@@ -1,0 +1,98 @@
+BASH : Bourne again shell(stephen Bourne in 1979)
+
+
+BASH VS SCRIPT :
+
+BASH : bash is a program that inteprets the you tye in terminal and passes them on to the OS. 
+SCRIPT : script is a file and it's containing the commands for the shell
+
+
+Bash Script core componets :
+
+	1.) Begining of the script (shabangu line(#!/bin/bash))
+	2.) Middle of the script(commands) 
+	3.) End of the script(Exitcode) 
+
+		Shabangu line :
+	
+			* shabangu line is the very first line of the script (#!)*
+			* it's indicate the what programing language using this script
+			* shabangu line basically tells the shell what interpreter should be used to read the script
+	
+		Commands :
+	
+		  	* body of the script
+	
+		Exit code :
+		
+		  	* exitcode range (0-255)
+		  	* if exitcode is 0 the script was executed succesfully
+		  	* 1 or any other value it's return the error
+    
+    example :
+    
+    #!/bin/bash                    
+    			                    # A blank line for the formatting reasons	
+    echo "Hello world!:)"            # just print the text
+    exit 0                          # put the exit code
+
+Inline-commants:
+
+	NOTE ::: Don't add a commant in shabangu line
+	
+	* inline commants are starts with # symbol
+
+	Basic components of script :
+
+    	* Author name (name of the script author)
+    	* Date Created (date of the script created)
+    	* Last Modified (date of the last modified the script)
+    	* Description (script description in shortly)
+    	* Usage (usage of the script)
+
+    example :
+
+    #!/bin/bash
+
+    # Author : CyFrA_vijay
+    # Date Crated : 13/09/2021
+    # Date Modified : 13/09/2021
+
+    # Description 
+    # Print the hello world in your terminal
+
+    # usage
+    # Just rn the script
+
+    echo "Hello world :)"
+    exit 0
+
+Exercise :
+
+Task : to create a home directory backupfile
+
+Script :
+
+#!/bin/bash
+
+# Author : CyFrA_Viijay
+# Date Created : 13/09/2021
+# Date Modified : 13/09/2021
+
+# Description:
+# Home directory backupfile
+
+#usage:
+#just run the code 
+
+tar -cvf ~/Bash/testing/backup_"$(date +%d-%m-%y_%H-%M-%S)".tar ~/* 2>/dev/null #c-create a new archive ; v-verbose ;f - archive path ; ~/* - select the all home directory files
+exit 0
+
+
+Add your scripts is system path varibale :
+	
+	step 1 : move to the home directory
+	step 2 : open .profile file 
+	step 3 : then add --> export PATH="$PATH:$HOME/<script directory name>"
+	step 4 : next reload your .profile --> source .profile
+	step 5 : just check the path --> echo "$PATH"
