@@ -1,0 +1,139 @@
+variabales and shell scripts:
+
+varibables : 
+	variables are used for store the data
+
+Parameter :
+	A parameter is any entity that stores values
+
+Three types of shell parameters:
+	* Variables
+	* Positional parameters
+	* Special parameters
+
+Variable Creation : 
+	* Dont't give the space while variable cration (eg : name="vijay")
+	* if you give the space with varibal, bash interpreter was taken that is command line argument(eg : name = 'vijay')
+	
+	varable types :
+		* user-defind variables 
+		* shell varibales (like 'echo $HOME')
+
+	Types of shell varibales :
+		* Bourne shell variables(10 in total variables)
+		* Bash shell variables(Around 95 in total)
+
+	NOTE ::: All the shell varibables have uppercase names
+
+Parameter Expansion Tricks : 
+
+	* add the " , " at end of the varible to convert first letter into lowercase (echo $USER,})
+	* add the " ^ " at end of the varible to convert first letter into uppercase (echo ${USER^})
+	* add the " ^^ " at end of the varible to convert all into uppercase (echo ${USER^^})
+	* add the " ,, " at end of the varibel to convert all into lowercase (echo ${USER,,})
+	* if start of the varible specify the " # " symble it's return as the length of the variable (echo ${#USER}
+
+	sliceing :
+		syn : ${parameter:offset:length}
+		ex:
+			:># numbers=12345
+			:># echo ${numbers:0:4}
+			:># echo ${numbers: -2:1} # if you use negative offset after variable colon(:) give the space 
+
+Command substitution:
+	
+	* it's store the output of the any command
+	syn:
+		variable_name=$(command)
+	ex:
+		time=$(date +%d-%m-%y_%H:%M)
+
+Project improvement :
+
+Task : 
+	Firstly, your script is not giving any output to the user. It would be nice to tell the user
+		that the script is running to give them a bit of reassurance that their valuable data is
+		indeed being backed up.
+	Secondly, some of your colleagues struggle to use the script because they do not
+		have a b
+		ash_course​ directory on their system. To get around this issue, you want to
+		modify the script so that it creates a backup in whatever directory the user runs the
+		script from
+
+Soulution:
+
+#!/bin/bash 
+
+# Author : CyFrA_Vijay
+# Date Modified : 13/09/2021
+# Last Modified : 13/09/2021
+
+# Description
+# To backup a home directory files
+
+# Usage
+# just run the code
+
+current_dir=$(pwd)                                                                   ----> command substituion
+echo "Hello, ${USER^}"
+echo "I will now back up your home directory, $HOME"
+echo "you are running this script from $current_dir"
+echo "Therefore, I will save the backup in $current_dir"
+tar -cf $current_dir/backup_"$(date +%m-%d-%y_%H-%M-%S)".tar $HOME/* 2>/dev/null
+echo "Backup Compleated Successfully"
+exit 0
+
+Arithmetic Expansion: 
+
+	syn : $((expression))
+	ex : add=$((4+5))
+
+NOTE ::: Arithmetic expansion can't handle the decimal numbers( . numbers)(ex : 3.4,3.88) 
+NOTE ::: Bash only handle only the whole numbers(0 to infinity)(ex : 3)
+
+Error: 
+
+	:># add=$((1.1-1))
+	:># bash: 1.1-1: syntax error: invalid arithmetic operator (error token is ".1-1")
+
+Deal with decimal numbers in bash :
+
+	command ::: bc(Basic calculater) 
+
+NOTE ::: This command must have scale value (after . digits)(ex: echo "scale=2; 5/2" | bc) ====> ans : 2.50
+
+
+Tilde Expansion : 
+
+	Tilde char :::: ~ 
+	
+	* it's denote the home directory 
+	
+	usage :
+	echo ~ or echo ~+	 
+	echo ~<user> (ex: echo ~CyFrA)
+
+	* oldpwd shell variable tracks the previous working directory (ex : echo $OLDPWD)(shortcut : echo ~-)
+
+Brace Expansion:  
+
+	* it's perform {} braces
+
+	 Types :
+	 	* String list
+	 	* Range list
+
+	 String list:
+	 	* echo {vijay,ajay,bala} # don't give the space inside the brace
+	 Range list:
+	 	* echo {1..10} ===> ans : 1 2 3 4 5 6 7 8 9 10
+	 	* echo {a..z}
+	 	* echo {1..10..2} # in steps of 2 =====> ans : 1 3 5 7 9
+	 	* echo <prefix name>{1..10} (ex: echo vijay{01..10}) ==> ans : vijay01 vijay02 ...vijay10
+	 	* mkdir lession{01..10} # create the 10 directory like lession01,lession02...lession10
+	 	* touch lession{01..10}/textfile{1..10}.txt # create inside the all folder in the text file 
+
+
+
+
+
