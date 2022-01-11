@@ -1,2 +1,5 @@
 # Linux-automation
-1.) Creating a backup script using bash
+
+session 
+
+1.) understanding the bash and creating the first bash backup script 
