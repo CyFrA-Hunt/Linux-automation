@@ -3,6 +3,7 @@ BASH : Bourne again shell(stephen Bourne in 1979)
 
 BASH VS SCRIPT :
 
+
 BASH : bash is a program that inteprets the you tye in terminal and passes them on to the OS. 
 SCRIPT : script is a file and it's containing the commands for the shell
 
